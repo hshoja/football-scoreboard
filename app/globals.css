@@ -1,0 +1,199 @@
+/* Import Tailwind */
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --border-radius: 0.5rem;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .mr-1 {
+  margin-right: 0;
+  margin-left: 0.25rem;
+}
+[dir="rtl"] .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+[dir="rtl"] .ml-1 {
+  margin-left: 0;
+  margin-right: 0.25rem;
+}
+[dir="rtl"] .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+[dir="rtl"] .pr-2 {
+  padding-right: 0;
+  padding-left: 0.5rem;
+}
+[dir="rtl"] .pl-2 {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+[dir="rtl"] .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+[dir="rtl"] .space-x-4 > * + * {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+/* Font smoothing */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Language-specific font settings */
+html[lang="en"] {
+  font-family: var(--font-noto-sans), system-ui, sans-serif;
+}
+
+html[lang="fa"] {
+  font-family: var(--font-vazirmatn), system-ui, sans-serif;
+  font-feature-settings: "ss01", "ss02", "kern", "liga", "calt";
+  text-rendering: optimizeLegibility;
+  word-spacing: -0.5px; /* Slight word spacing adjustment for Persian text */
+  line-height: 1.8; /* Better line height for Persian */
+  letter-spacing: -0.01em; /* Slightly tighter letter spacing for Persian */
+}
+
+/* Farsi / Arabic Typography - Digit spacing & symbols fix */
+[lang="fa"] {
+  /* Better word selection */
+  ::selection {
+    background-color: rgba(79, 70, 229, 0.2);
+  }
+
+  /* Increase spacing between numbers in Persian text */
+  .digit-spacing {
+    letter-spacing: 0.05em;
+  }
+
+  /* Tables look better with tighter spacing in Persian */
+  table {
+    letter-spacing: -0.01em;
+  }
+
+  /* Headings with proper weights for Vazirmatn */
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  h3,
+  h4 {
+    font-weight: 600;
+  }
+
+  h5,
+  h6 {
+    font-weight: 500;
+  }
+
+  /* Fix for Persian parentheses alignment */
+  .fa-parenthesis {
+    unicode-bidi: plaintext;
+  }
+
+  /* Better buttons for RTL */
+  button,
+  .btn {
+    letter-spacing: 0;
+  }
+
+  /* Improve number display */
+  .tabular-nums {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
+/* Better focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Improve button styles */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.15s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.15s ease-in-out;
+}
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: #1f2937;
+  }
+
+  .btn-secondary {
+    background-color: #374151;
+    color: #f9fafb;
+  }
+  .btn-secondary:hover {
+    background-color: #4b5563;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
