@@ -26,6 +26,10 @@ const translations: Translations = {
     en: "Football Tournament Manager",
     fa: "مدیریت مسابقات فوتبال",
   },
+  appNameShort: {
+    en: "Football Manager",
+    fa: "مدیریت فوتبال",
+  },
   tournamentManager: {
     en: "Football Tournament Manager",
     fa: "مدیریت مسابقات فوتبال",
@@ -127,6 +131,10 @@ const translations: Translations = {
   noTournaments: {
     en: "You don't have any tournaments yet",
     fa: "شما هنوز مسابقه ای ندارید",
+  },
+  noTournamentFound: {
+    en: "No tournament found",
+    fa: "مسابقه‌ای یافت نشد",
   },
   createFirstTournament: {
     en: "Create Your First Tournament",

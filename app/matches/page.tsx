@@ -27,11 +27,11 @@ export default function MatchesPage() {
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">
+          <div className="w-full">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-600 dark:text-primary-400 truncate max-w-full">
               {currentTournament.name}
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               {currentTournament.isHomeAndAway
                 ? t("homeAwayFormat")
                 : t("singleGame")}{" "}

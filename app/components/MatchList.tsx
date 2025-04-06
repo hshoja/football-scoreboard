@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import { useTournament } from "../context/TournamentContext";
+import { useLanguage } from "../context/LanguageContext";
 import { Match } from "../types";
 
 export default function MatchList() {
   const { currentTournament, updateMatchResult, getTeamById } = useTournament();
+  const { t } = useLanguage();
   const [editingMatch, setEditingMatch] = useState<string | null>(null);
   const [homeGoals, setHomeGoals] = useState<number>(0);
   const [awayGoals, setAwayGoals] = useState<number>(0);
 
   if (!currentTournament) {
-    return <p>No tournament found</p>;
+    return <p>{t("noTournamentFound")}</p>;
   }
 
   const startEditingMatch = (match: Match) => {
@@ -154,7 +156,7 @@ export default function MatchList() {
                         : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
                     }`}
                   >
-                    {status === "completed" ? "Completed" : "Pending"}
+                    {status === "completed" ? t("completed") : t("pending")}
                   </span>
 
                   {isEditing ? (
@@ -162,7 +164,7 @@ export default function MatchList() {
                       onClick={() => saveMatchResult(match.id)}
                       className="ml-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors whitespace-nowrap"
                     >
-                      Save Result
+                      {t("saveResult")}
                     </button>
                   ) : (
                     <button
@@ -173,7 +175,9 @@ export default function MatchList() {
                           : "bg-yellow-600 hover:bg-yellow-700"
                       } text-white rounded-md transition-colors whitespace-nowrap`}
                     >
-                      {status === "completed" ? "Edit" : "Enter Result"}
+                      {status === "completed"
+                        ? t("editResult")
+                        : t("enterResult")}
                     </button>
                   )}
                 </div>

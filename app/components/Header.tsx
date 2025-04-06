@@ -42,9 +42,12 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold text-primary-600 dark:text-primary-400">
+              <span className="text-base sm:text-lg md:text-xl font-bold text-primary-600 dark:text-primary-400 flex items-center">
                 <span className={language === "fa" ? "ml-2" : "mr-2"}>⚽</span>
-                {t("appName")}
+                <span className="truncate max-w-[150px] sm:max-w-none">
+                  <span className="sm:hidden">{t("appNameShort")}</span>
+                  <span className="hidden sm:inline">{t("appName")}</span>
+                </span>
               </span>
             </Link>
             <nav className="hidden sm:ml-6 sm:flex sm:space-x-4 rtl:space-x-reverse">
