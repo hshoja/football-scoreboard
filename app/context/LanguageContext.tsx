@@ -300,6 +300,10 @@ const translations: Translations = {
     en: "Save Result",
     fa: "ذخیره نتیجه",
   },
+  cancelEdit: {
+    en: "Cancel",
+    fa: "انصراف",
+  },
 
   // Tournament status
   notStarted: {
