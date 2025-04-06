@@ -502,6 +502,10 @@ const translations: Translations = {
     en: "Back to Home",
     fa: "بازگشت به صفحه اصلی",
   },
+  winner: {
+    en: "Winner",
+    fa: "برنده",
+  },
 };
 
 // Context type

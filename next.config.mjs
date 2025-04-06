@@ -24,14 +24,15 @@ const nextConfig = {
   },
 };
 
-// Configure NextPWA
+// Configure NextPWA with simple configuration to prevent sw.startsWith error
 const pwaConfig = withPWA({
   dest: "public",
-  register: true,
+  register: false,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
-  // Ensure manifest is available at the correct path
-  publicExcludes: ["!manifest.json"],
+  fallbacks: {
+    document: "/offline",
+  },
 })(nextConfig);
 
 // Export the PWA configuration

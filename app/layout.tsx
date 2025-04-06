@@ -5,6 +5,7 @@ import LanguageDialog from "./components/LanguageDialog";
 import { LanguageProvider } from "./context/LanguageContext";
 import MobileNavigation from "./components/MobileNavigation";
 import { TournamentProvider } from "./context/TournamentContext";
+import ServiceWorkerRegistration from "./ServiceWorkerRegistration";
 import "./globals.css";
 
 // Load Noto Sans for Latin scripts
@@ -137,6 +138,7 @@ function LanguageWrapper({ children }: { children: React.ReactNode }) {
         className={`${notoSans.variable} ${vazirmatn.variable} font-sans antialiased bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen`}
       >
         <TournamentProvider>
+          <ServiceWorkerRegistration />
           <LanguageDialog />
           <Header />
           <main className="max-w-7xl mx-auto p-4 sm:p-8 pb-20 sm:pb-8">

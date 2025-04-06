@@ -9,8 +9,22 @@ export default function OfflinePage() {
   const { t } = useLanguage();
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
+  const [hasStoredData, setHasStoredData] = useState(false);
 
   useEffect(() => {
+    // Check if we have localStorage data
+    const checkStoredData = () => {
+      try {
+        const tournaments = localStorage.getItem("tournaments");
+        setHasStoredData(tournaments !== null && tournaments !== "[]");
+      } catch (error) {
+        console.error("Error checking localStorage:", error);
+        setHasStoredData(false);
+      }
+    };
+
+    checkStoredData();
+
     // Try to reconnect periodically
     const checkConnection = () => {
       if (navigator.onLine) {
@@ -70,33 +84,109 @@ export default function OfflinePage() {
         </button>
       </div>
 
-      <div className="mt-10 border-t border-gray-200 pt-6 w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-4">
-          {t("availableOffline") || "Available Offline"}
-        </h2>
-        <ul className="grid grid-cols-2 gap-2">
-          <li className="border border-gray-200 rounded p-3 text-center hover:bg-gray-50">
-            <Link href="/matches" className="block w-full h-full">
-              {t("matches") || "Matches"}
-            </Link>
-          </li>
-          <li className="border border-gray-200 rounded p-3 text-center hover:bg-gray-50">
-            <Link href="/teams" className="block w-full h-full">
-              {t("teams") || "Teams"}
-            </Link>
-          </li>
-          <li className="border border-gray-200 rounded p-3 text-center hover:bg-gray-50">
-            <Link href="/standings" className="block w-full h-full">
-              {t("standings") || "Standings"}
-            </Link>
-          </li>
-          <li className="border border-gray-200 rounded p-3 text-center hover:bg-gray-50">
-            <Link href="/" className="block w-full h-full">
-              {t("home") || "Home"}
-            </Link>
-          </li>
-        </ul>
-      </div>
+      {hasStoredData && (
+        <div className="mt-10 border-t border-gray-200 dark:border-gray-700 pt-6 w-full max-w-md">
+          <h2 className="text-xl font-semibold mb-4">
+            {t("availableOffline") || "Available Offline"}
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            {t("offlineDataDesc") ||
+              "Your data is stored locally and can be accessed offline"}
+          </p>
+          <ul className="grid grid-cols-2 gap-3">
+            <li>
+              <Link
+                href="/"
+                className="flex flex-col items-center justify-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                <svg
+                  className="w-6 h-6 mb-2 text-indigo-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+                <span>{t("tournaments") || "Tournaments"}</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/matches"
+                className="flex flex-col items-center justify-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                <svg
+                  className="w-6 h-6 mb-2 text-indigo-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{t("matches") || "Matches"}</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/standings"
+                className="flex flex-col items-center justify-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                <svg
+                  className="w-6 h-6 mb-2 text-indigo-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+                <span>{t("standings") || "Standings"}</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/info"
+                className="flex flex-col items-center justify-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                <svg
+                  className="w-6 h-6 mb-2 text-indigo-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{t("info") || "Info"}</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

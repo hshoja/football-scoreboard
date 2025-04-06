@@ -137,6 +137,80 @@ export default function Home() {
     }
   };
 
+  // Function to get the tournament winner
+  const getTournamentWinner = (tournament: Tournament) => {
+    // Calculate if all matches have results
+    const completedMatches = tournament.matches.filter(
+      (match) => match.homeGoals !== null && match.awayGoals !== null
+    ).length;
+    const totalMatches = tournament.matches.length;
+
+    // Only calculate winner if tournament is completed
+    if (completedMatches !== totalMatches) {
+      return null;
+    }
+
+    // Calculate scores for each team
+    const table: {
+      [key: string]: {
+        teamId: string;
+        teamName: string;
+        points: number;
+        goalDiff: number;
+        goalsFor: number;
+      };
+    } = {};
+
+    // Initialize table
+    tournament.teams.forEach((team) => {
+      table[team.id] = {
+        teamId: team.id,
+        teamName: team.name,
+        points: 0,
+        goalDiff: 0,
+        goalsFor: 0,
+      };
+    });
+
+    // Calculate results
+    tournament.matches.forEach((match) => {
+      if (match.homeGoals !== null && match.awayGoals !== null) {
+        const homeTeam = table[match.homeTeamId];
+        const awayTeam = table[match.awayTeamId];
+
+        // Update goals
+        homeTeam.goalsFor += match.homeGoals;
+        homeTeam.goalDiff += match.homeGoals - match.awayGoals;
+        awayTeam.goalsFor += match.awayGoals;
+        awayTeam.goalDiff += match.awayGoals - match.homeGoals;
+
+        // Update points
+        if (match.homeGoals > match.awayGoals) {
+          // Home team wins
+          homeTeam.points += 3;
+        } else if (match.homeGoals < match.awayGoals) {
+          // Away team wins
+          awayTeam.points += 3;
+        } else {
+          // Draw
+          homeTeam.points += 1;
+          awayTeam.points += 1;
+        }
+      }
+    });
+
+    // Find the winner (team with most points)
+    return Object.values(table).sort((a, b) => {
+      if (a.points !== b.points) {
+        return b.points - a.points;
+      }
+      if (a.goalDiff !== b.goalDiff) {
+        return b.goalDiff - a.goalDiff;
+      }
+      return b.goalsFor - a.goalsFor;
+    })[0];
+  };
+
   return (
     <div className="min-h-screen">
       <div className="max-w-4xl mx-auto">
@@ -183,15 +257,41 @@ export default function Home() {
                   >
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-medium text-lg">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h3 className="font-medium text-lg mr-1">
                             {tournament.name}
                           </h3>
-                          <span
-                            className={`px-2 py-1 rounded-full text-xs font-medium ${statusClass}`}
-                          >
-                            {status}
-                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-xs font-medium ${statusClass}`}
+                            >
+                              {status}
+                            </span>
+
+                            {/* Show winner badge if tournament is completed */}
+                            {status === t("tournamentCompleted") && (
+                              <div className="inline-flex items-center px-2 py-0.5 bg-amber-100 border border-amber-200 rounded-full text-xs font-medium dark:bg-amber-900/30 dark:border-amber-800">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  fill="currentColor"
+                                  className="w-3.5 h-3.5 mr-1 text-amber-600 dark:text-amber-400 flex-shrink-0"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M5.166 2.621v.858c-1.035.148-2.059.33-3.071.543a.75.75 0 0 0-.584.859 6.753 6.753 0 0 0 6.138 5.6 6.73 6.73 0 0 0 2.743-.356l1.108-.328 1.1.324a6.73 6.73 0 0 0 2.742.358 6.753 6.753 0 0 0 6.138-5.6.75.75 0 0 0-.584-.86 44.945 44.945 0 0 0-3.071-.543v-.858a48.544 48.544 0 0 0-10.653 0Zm1.5 1.114a47.03 47.03 0 0 1 7.653 0v2.646c0 3.394-2.185 6.333-5.373 7.335-3.187-1-5.374-3.94-5.374-7.335V3.735Z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                                <span className="text-amber-800 dark:text-amber-300 truncate max-w-[120px] sm:max-w-none">
+                                  <span className="mr-0.5 hidden sm:inline">
+                                    {t("winner")}:
+                                  </span>
+                                  {getTournamentWinner(tournament)?.teamName}
+                                </span>
+                              </div>
+                            )}
+                          </div>
                         </div>
                         <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
                           <p>
