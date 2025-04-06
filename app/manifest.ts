@@ -1,7 +1,10 @@
 import { MetadataRoute } from "next";
 
+// This ensures the file is statically generated for export
 export const dynamic = "force-static";
+export const revalidate = false;
 
+// Function must be the default export
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Football Tournament Manager",
@@ -87,16 +90,16 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     screenshots: [
       {
-        src: "/screenshots/home.png",
+        src: "/screenshots/home.svg",
         sizes: "1280x720",
-        type: "image/png",
+        type: "image/svg+xml",
         platform: "windows",
         label: "Home Screen",
       },
       {
-        src: "/screenshots/standings.png",
+        src: "/screenshots/standings.svg",
         sizes: "1280x720",
-        type: "image/png",
+        type: "image/svg+xml",
         platform: "windows",
         label: "Standings Screen",
       },

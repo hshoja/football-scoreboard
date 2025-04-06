@@ -158,6 +158,36 @@ const translations: Translations = {
     en: "Home & Away Format",
     fa: "فرمت رفت و برگشت",
   },
+  viewMatches: {
+    en: "View Matches",
+    fa: "مشاهده بازی‌ها",
+  },
+
+  // Standings page
+  tournamentSummary: {
+    en: "Tournament Summary",
+    fa: "خلاصه مسابقات",
+  },
+  pointsSystem: {
+    en: "Points System",
+    fa: "سیستم امتیازدهی",
+  },
+  win: {
+    en: "Win",
+    fa: "برد",
+  },
+  draw: {
+    en: "Draw",
+    fa: "مساوی",
+  },
+  loss: {
+    en: "Loss",
+    fa: "باخت",
+  },
+  totalMatches: {
+    en: "Total Matches",
+    fa: "کل بازی‌ها",
+  },
 
   // Standings table
   played: {
@@ -327,6 +357,32 @@ const translations: Translations = {
   digitSpacing: {
     en: "Digit Spacing",
     fa: "فاصله‌گذاری ارقام",
+  },
+
+  // Offline page
+  offline: {
+    en: "You're Offline",
+    fa: "شما آفلاین هستید",
+  },
+  offlineDesc: {
+    en: "It seems you're not connected to the internet right now",
+    fa: "به نظر می‌رسد در حال حاضر به اینترنت متصل نیستید",
+  },
+  checkingConnection: {
+    en: "Checking connection...",
+    fa: "در حال بررسی اتصال...",
+  },
+  tryAgain: {
+    en: "Try Again",
+    fa: "تلاش مجدد",
+  },
+  availableOffline: {
+    en: "Available Offline",
+    fa: "در دسترس آفلاین",
+  },
+  home: {
+    en: "Home",
+    fa: "خانه",
   },
 };
 

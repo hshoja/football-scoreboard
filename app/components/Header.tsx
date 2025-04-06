@@ -78,16 +78,6 @@ export default function Header() {
               >
                 {t("standings")}
               </Link>
-              <Link
-                href="/typography"
-                className={`px-3 py-2 rounded-md text-sm font-medium ${
-                  pathname === "/typography"
-                    ? "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                }`}
-              >
-                {t("typographyExample")}
-              </Link>
             </nav>
           </div>
 
@@ -187,17 +177,6 @@ export default function Header() {
             }`}
           >
             {t("standings")}
-          </Link>
-          <Link
-            href="/typography"
-            onClick={() => setMobileMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-medium ${
-              pathname === "/typography"
-                ? "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400"
-                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-            }`}
-          >
-            {t("typographyExample")}
           </Link>
         </div>
       </div>

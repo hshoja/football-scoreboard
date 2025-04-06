@@ -68,6 +68,10 @@ html[lang="fa"] {
   word-spacing: -0.5px; /* Slight word spacing adjustment for Persian text */
   line-height: 1.8; /* Better line height for Persian */
   letter-spacing: -0.01em; /* Slightly tighter letter spacing for Persian */
+
+  /* Advanced text rendering for Farsi */
+  -webkit-text-size-adjust: 100%;
+  text-shadow: 0 0 1px transparent; /* Subtle text enhancement for retina displays */
 }
 
 /* Farsi / Arabic Typography - Digit spacing & symbols fix */
@@ -123,6 +127,36 @@ html[lang="fa"] {
   .tabular-nums {
     font-feature-settings: "tnum";
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Enhanced paragraph spacing for Farsi text */
+  p {
+    margin-bottom: 1.2em;
+    text-align: justify; /* Justified text looks better in Farsi */
+    text-justify: inter-word;
+  }
+
+  /* Fix for Farsi numeric characters */
+  .farsi-digits {
+    font-feature-settings: "ss01", "ss02", "kern", "liga", "calt", "tnum";
+  }
+
+  /* Better punctuation spacing in Farsi */
+  .fa-punctuation-spacing {
+    word-spacing: 0.1em;
+  }
+
+  /* Improved line break opportunities for Farsi */
+  .fa-text-wrap {
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  /* Nicer form inputs for Farsi */
+  input,
+  textarea {
+    letter-spacing: 0;
+    line-height: 1.6;
   }
 }
 
@@ -196,4 +230,30 @@ html[lang="fa"] {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Farsi-specific responsive adjustments */
+@media screen and (max-width: 768px) {
+  [lang="fa"] {
+    word-spacing: -0.3px; /* Less aggressive word spacing on small screens */
+    line-height: 1.7; /* Slightly reduced line height on mobile for Farsi */
+  }
+
+  [lang="fa"] p {
+    text-align: right; /* Don't justify text on small screens for readability */
+  }
+}
+
+/* Farsi print styles optimization */
+@media print {
+  [lang="fa"] {
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+
+  [lang="fa"] h1,
+  [lang="fa"] h2,
+  [lang="fa"] h3 {
+    break-after: avoid;
+  }
 }

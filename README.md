@@ -12,6 +12,7 @@ A responsive web application for managing football tournaments, matches, teams, 
 - **Match Scheduling**: Schedule and track match results
 - **Team Management**: Add teams with custom logos and details
 - **Standings Table**: Automatically calculated standings
+- **Enhanced Farsi Typography**: Optimized text rendering for Persian language
 
 ## Installation
 
@@ -139,6 +140,23 @@ football-tournament/
 ├── scripts/              # Build and utility scripts
 └── styles/               # Global CSS styles
 ```
+
+## Farsi Typography Optimizations
+
+The application includes specialized typography optimizations for the Persian language:
+
+- **Optimized Font:** Uses Vazirmatn, a high-quality Persian font optimized for digital interfaces
+- **Enhanced Rendering:** Custom text rendering settings for improved legibility
+- **Word Spacing:** Adjusted spacing for Persian text to improve readability
+- **Line Height:** Specialized line height calculations for Persian characters
+- **RTL Support:** Full right-to-left layout support with proper text alignment
+- **Digit Spacing:** Increased spacing between numbers for better readability
+- **Responsive Typography:** Different settings for mobile and desktop views
+- **Print Optimization:** Special settings when printing content in Farsi
+- **Punctuation Handling:** Better spacing around Persian punctuation marks
+- **Text Wrapping:** Improved line break opportunities for Farsi text
+
+These optimizations ensure that Persian text is displayed with the highest quality and readability across all devices and screen sizes.
 
 ## Troubleshooting
 
