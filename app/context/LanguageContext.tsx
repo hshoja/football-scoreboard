@@ -440,6 +440,68 @@ const translations: Translations = {
     en: "Volume",
     fa: "میزان صدا",
   },
+
+  // Info page
+  aboutApp: {
+    en: "About Football Tournament Manager",
+    fa: "درباره مدیریت مسابقات فوتبال",
+  },
+  dataPrivacy: {
+    en: "Data Privacy & Storage",
+    fa: "حریم خصوصی و ذخیره‌سازی داده‌ها",
+  },
+  localStorageInfo: {
+    en: "All your tournament data is stored securely on your local device using browser's localStorage. Your data never leaves your device and is not sent to any server.",
+    fa: "تمام اطلاعات مسابقات شما به صورت امن در دستگاه شما با استفاده از localStorage مرورگر ذخیره می‌شود. داده‌های شما هرگز از دستگاهتان خارج نمی‌شود و به هیچ سروری ارسال نمی‌شود.",
+  },
+  dataSafetyInfo: {
+    en: "Your tournament data remains private and secure on your device. This means:",
+    fa: "داده‌های مسابقات شما خصوصی و ایمن در دستگاه شما باقی می‌ماند. این به این معنی است:",
+  },
+  offlineAccess: {
+    en: "You can access your tournaments even when offline",
+    fa: "حتی در حالت آفلاین می‌توانید به مسابقات خود دسترسی داشته باشید",
+  },
+  noServerStorage: {
+    en: "No data is sent to our servers",
+    fa: "هیچ داده‌ای به سرورهای ما ارسال نمی‌شود",
+  },
+  deviceLimited: {
+    en: "Your data is only available on this device/browser",
+    fa: "داده‌های شما فقط در این دستگاه/مرورگر در دسترس است",
+  },
+  clearingBrowserData: {
+    en: "Clearing browser data will also remove your tournament data",
+    fa: "پاک کردن داده‌های مرورگر، داده‌های مسابقات شما را نیز حذف خواهد کرد",
+  },
+  exportFeature: {
+    en: "We recommend occasionally exporting important tournaments if you wish to preserve them long-term or transfer them to another device.",
+    fa: "توصیه می‌کنیم برای حفظ طولانی‌مدت یا انتقال به دستگاه دیگر، گاهی مسابقات مهم خود را صادر کنید.",
+  },
+  support: {
+    en: "Support & Contact",
+    fa: "پشتیبانی و تماس",
+  },
+  needHelp: {
+    en: "Need help or have suggestions for improvement? Reach out to us:",
+    fa: "به کمک نیاز دارید یا پیشنهادی برای بهبود دارید؟ با ما تماس بگیرید:",
+  },
+  copyToClipboard: {
+    en: "Copy to clipboard",
+    fa: "کپی در کلیپ‌بورد",
+  },
+  emailCopied: {
+    en: "Email copied to clipboard!",
+    fa: "ایمیل در کلیپ‌بورد کپی شد!",
+  },
+  appVersion: {
+    en: "App Version",
+    fa: "نسخه برنامه",
+  },
+  backToHome: {
+    en: "Back to Home",
+    fa: "بازگشت به صفحه اصلی",
+  },
 };
 
 // Context type
