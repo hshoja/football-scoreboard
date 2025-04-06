@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
+import SoundControl from "./SoundControl";
 
 export default function Header() {
   const pathname = usePathname();
@@ -87,6 +88,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <div className="sm:hidden flex items-center">
             <div className="flex mr-2 rtl:mr-0 rtl:ml-2">
+              <SoundControl />
               <LanguageSwitcher />
             </div>
             <button
@@ -135,6 +137,7 @@ export default function Header() {
 
           {/* Desktop right side */}
           <div className="hidden sm:flex items-center">
+            <SoundControl />
             <LanguageSwitcher />
           </div>
         </div>

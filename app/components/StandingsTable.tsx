@@ -3,11 +3,17 @@
 import { useTournament } from "../context/TournamentContext";
 import { useLanguage } from "../context/LanguageContext";
 import { TableEntry } from "../types";
+import { playSound } from "../utils/sound";
 
 export default function StandingsTable() {
   const { calculateTable } = useTournament();
   const { t, formatNumber } = useLanguage();
   const tableEntries = calculateTable();
+
+  // Handler for playing sound when details are toggled
+  const handleDetailsClick = () => {
+    playSound("CLICK");
+  };
 
   if (tableEntries.length === 0) {
     return (
@@ -23,7 +29,11 @@ export default function StandingsTable() {
       <div className="md:hidden">
         <div className="grid gap-2">
           {tableEntries.map((entry, index) => (
-            <details key={entry.teamId} className="group">
+            <details
+              key={entry.teamId}
+              className="group"
+              onClick={handleDetailsClick}
+            >
               <summary className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 rounded-lg p-3 cursor-pointer list-none">
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 flex items-center justify-center text-sm font-bold">

@@ -404,6 +404,42 @@ const translations: Translations = {
     en: "Home",
     fa: "خانه",
   },
+
+  // Accessibility
+  accessibility: {
+    en: "Accessibility",
+    fa: "دسترسی‌پذیری",
+  },
+  increaseFontSize: {
+    en: "Increase Font Size",
+    fa: "افزایش اندازه متن",
+  },
+  decreaseFontSize: {
+    en: "Decrease Font Size",
+    fa: "کاهش اندازه متن",
+  },
+  resetFontSize: {
+    en: "Reset Font Size",
+    fa: "بازنشانی اندازه متن",
+  },
+
+  // Sound settings
+  mute: {
+    en: "Mute Sounds",
+    fa: "بی‌صدا کردن",
+  },
+  unmute: {
+    en: "Unmute Sounds",
+    fa: "فعال کردن صدا",
+  },
+  soundSettings: {
+    en: "Sound Settings",
+    fa: "تنظیمات صدا",
+  },
+  volume: {
+    en: "Volume",
+    fa: "میزان صدا",
+  },
 };
 
 // Context type

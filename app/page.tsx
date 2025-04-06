@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTournament } from "./context/TournamentContext";
 import { useLanguage } from "./context/LanguageContext";
+import { playSound } from "./utils/sound";
 import { Team, Tournament } from "./types";
 
 // Add types for the TournamentForm props
@@ -49,6 +50,7 @@ export default function Home() {
       return;
     }
 
+    playSound("CLICK");
     const newTeam: Team = {
       id: Date.now().toString(),
       name: teamInput.trim(),
@@ -60,6 +62,7 @@ export default function Home() {
   };
 
   const handleRemoveTeam = (id: string) => {
+    playSound("CLICK");
     setTeams(teams.filter((team) => team.id !== id));
   };
 
@@ -76,11 +79,13 @@ export default function Home() {
       return;
     }
 
+    playSound("GAME_START");
     createTournament(tournamentName.trim(), teams, isHomeAndAway);
     router.push("/matches");
   };
 
   const handleSelectTournament = (tournamentId: string) => {
+    playSound("CLICK");
     loadTournament(tournamentId);
     router.push("/matches");
   };
@@ -90,9 +95,15 @@ export default function Home() {
     tournamentId: string
   ) => {
     event.stopPropagation();
+    playSound("CLICK");
     if (window.confirm("Are you sure you want to delete this tournament?")) {
       deleteTournament(tournamentId);
     }
+  };
+
+  const toggleNewTournamentForm = () => {
+    playSound("CLICK");
+    setShowNewTournamentForm(!showNewTournamentForm);
   };
 
   const formatDate = (dateString: string) => {
@@ -134,7 +145,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-3">
             <h2 className="text-xl font-semibold">{t("yourTournaments")}</h2>
             <button
-              onClick={() => setShowNewTournamentForm(!showNewTournamentForm)}
+              onClick={toggleNewTournamentForm}
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors w-full sm:w-auto"
             >
               {showNewTournamentForm ? t("cancel") : t("createTournament")}
@@ -148,7 +159,10 @@ export default function Home() {
               </p>
               {!showNewTournamentForm && (
                 <button
-                  onClick={() => setShowNewTournamentForm(true)}
+                  onClick={() => {
+                    playSound("CLICK");
+                    setShowNewTournamentForm(true);
+                  }}
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
                   {t("createFirstTournament")}

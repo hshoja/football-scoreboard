@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTournament } from "../context/TournamentContext";
 import { useLanguage } from "../context/LanguageContext";
 import { Match } from "../types";
+import { playSound } from "../utils/sound";
 
 export default function MatchList() {
   const { currentTournament, updateMatchResult, getTeamById } = useTournament();
@@ -17,13 +18,20 @@ export default function MatchList() {
   }
 
   const startEditingMatch = (match: Match) => {
+    playSound("EDIT");
     setEditingMatch(match.id);
     setHomeGoals(match.homeGoals || 0);
     setAwayGoals(match.awayGoals || 0);
   };
 
   const saveMatchResult = (matchId: string) => {
+    playSound("GOAL");
     updateMatchResult(matchId, homeGoals, awayGoals);
+    setEditingMatch(null);
+  };
+
+  const cancelEditingMatch = () => {
+    playSound("CLICK");
     setEditingMatch(null);
   };
 
@@ -35,6 +43,7 @@ export default function MatchList() {
   };
 
   const incrementGoals = (isHome: boolean) => {
+    playSound("CLICK");
     if (isHome) {
       setHomeGoals((prev) => Math.min(prev + 1, 99));
     } else {
@@ -43,6 +52,7 @@ export default function MatchList() {
   };
 
   const decrementGoals = (isHome: boolean) => {
+    playSound("CLICK");
     if (isHome) {
       setHomeGoals((prev) => Math.max(prev - 1, 0));
     } else {
@@ -195,7 +205,7 @@ export default function MatchList() {
                   {isEditing ? (
                     <div className="flex gap-2">
                       <button
-                        onClick={() => setEditingMatch(null)}
+                        onClick={() => cancelEditingMatch()}
                         className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors whitespace-nowrap"
                       >
                         {t("cancelEdit")}

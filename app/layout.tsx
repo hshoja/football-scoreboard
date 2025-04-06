@@ -5,6 +5,9 @@ import { TournamentProvider } from "./context/TournamentContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import LanguageDialog from "./components/LanguageDialog";
 import Header from "./components/Header";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import SoundControl from "./components/SoundControl";
+import Link from "next/link";
 
 // Load Noto Sans for Latin scripts
 const notoSans = Noto_Sans({
