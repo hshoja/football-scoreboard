@@ -13,6 +13,12 @@ export default function Header() {
   const { t, language } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Set mounted to true after component mounts
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Add shadow when scrolled
   useEffect(() => {
@@ -31,14 +37,38 @@ export default function Header() {
   }, []);
 
   const toggleMobileMenu = () => {
-    playSound("CLICK");
+    if (mounted) {
+      playSound("CLICK");
+    }
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
   const handleNavLinkClick = () => {
-    playSound("CLICK");
+    if (mounted) {
+      playSound("CLICK");
+    }
     setMobileMenuOpen(false);
   };
+
+  // Prevent hydration errors with conditional rendering
+  if (!mounted) {
+    return (
+      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex">
+              <div className="flex-shrink-0 flex items-center">
+                <span className="text-base sm:text-lg md:text-xl font-bold text-primary-600 dark:text-primary-400 flex items-center">
+                  <span className="mr-2">⚽</span>
+                  <span>Football Tournament Manager</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header

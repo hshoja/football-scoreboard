@@ -194,6 +194,10 @@ If you encounter problems building for iOS:
 - iOS 13+ and Android 8+
 - Responsive from 320px width and up
 
+## Todos
+- offline mode not working 
+-  
+
 ## License
 
 MIT

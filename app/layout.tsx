@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { Noto_Sans, Vazirmatn } from "next/font/google";
-import "./globals.css";
-import { TournamentProvider } from "./context/TournamentContext";
-import { LanguageProvider } from "./context/LanguageContext";
-import LanguageDialog from "./components/LanguageDialog";
 import Header from "./components/Header";
-import LanguageSwitcher from "./components/LanguageSwitcher";
-import SoundControl from "./components/SoundControl";
-import Link from "next/link";
+import LanguageDialog from "./components/LanguageDialog";
+import { LanguageProvider } from "./context/LanguageContext";
+import { TournamentProvider } from "./context/TournamentContext";
+import "./globals.css";
 
 // Load Noto Sans for Latin scripts
 const notoSans = Noto_Sans({
