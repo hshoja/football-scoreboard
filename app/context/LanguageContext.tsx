@@ -230,6 +230,14 @@ const translations: Translations = {
     en: "Pts",
     fa: "امتیاز",
   },
+  swipeToSeeMore: {
+    en: "Swipe to see more",
+    fa: "برای دیدن بیشتر بکشید",
+  },
+  tapToExpand: {
+    en: "Tap on a team to see full stats",
+    fa: "برای مشاهده آمار کامل روی تیم کلیک کنید",
+  },
   playedFull: {
     en: "Played",
     fa: "بازی‌ها",

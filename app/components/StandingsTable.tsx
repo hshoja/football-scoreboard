@@ -19,67 +19,141 @@ export default function StandingsTable() {
 
   return (
     <div>
-      {/* Mobile view - simplified table */}
+      {/* Mobile view - accordion-style table without horizontal scrolling */}
       <div className="md:hidden">
         <div className="grid gap-2">
           {tableEntries.map((entry, index) => (
-            <div
-              key={entry.teamId}
-              className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 flex justify-between items-center"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 flex items-center justify-center text-sm font-bold">
-                  {formatNumber(index + 1)}
-                </div>
-                <span className="font-medium text-gray-900 dark:text-white">
-                  {entry.teamName}
-                </span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {t("points")}
-                  </span>
-                  <span className="font-bold text-gray-900 dark:text-white">
-                    {formatNumber(entry.points)}
+            <details key={entry.teamId} className="group">
+              <summary className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 rounded-lg p-3 cursor-pointer list-none">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 flex items-center justify-center text-sm font-bold">
+                    {formatNumber(index + 1)}
+                  </div>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {entry.teamName}
                   </span>
                 </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {t("played")}
-                  </span>
-                  <span className="text-gray-800 dark:text-gray-200">
-                    {formatNumber(entry.played)}
-                  </span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {t("goalDifference")}
-                  </span>
-                  <span
-                    className={`${
-                      entry.goalDifference > 0
-                        ? "text-green-600 dark:text-green-400"
-                        : entry.goalDifference < 0
-                        ? "text-red-600 dark:text-red-400"
-                        : "text-gray-800 dark:text-gray-200"
-                    }`}
+                <div className="flex items-center gap-3">
+                  <div className="flex flex-col items-center">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {t("played")}
+                    </span>
+                    <span className="text-gray-800 dark:text-gray-200">
+                      {formatNumber(entry.played)}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {t("goalDifference")}
+                    </span>
+                    <span
+                      className={`${
+                        entry.goalDifference > 0
+                          ? "text-green-600 dark:text-green-400"
+                          : entry.goalDifference < 0
+                          ? "text-red-600 dark:text-red-400"
+                          : "text-gray-800 dark:text-gray-200"
+                      }`}
+                    >
+                      {entry.goalDifference > 0
+                        ? `+${formatNumber(entry.goalDifference)}`
+                        : formatNumber(entry.goalDifference)}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {t("points")}
+                    </span>
+                    <span className="font-bold text-gray-900 dark:text-white">
+                      {formatNumber(entry.points)}
+                    </span>
+                  </div>
+                  <svg
+                    className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform ml-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    {entry.goalDifference > 0
-                      ? `+${formatNumber(entry.goalDifference)}`
-                      : formatNumber(entry.goalDifference)}
-                  </span>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </summary>
+
+              <div className="mt-2 p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("played")}
+                      </span>
+                      <span className="text-gray-800 dark:text-gray-200">
+                        {formatNumber(entry.played)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("won")}
+                      </span>
+                      <span className="text-gray-800 dark:text-gray-200">
+                        {formatNumber(entry.won)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("drawn")}
+                      </span>
+                      <span className="text-gray-800 dark:text-gray-200">
+                        {formatNumber(entry.drawn)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("lost")}
+                      </span>
+                      <span className="text-gray-800 dark:text-gray-200">
+                        {formatNumber(entry.lost)}
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("goalsFor")}
+                      </span>
+                      <span className="text-gray-800 dark:text-gray-200">
+                        {formatNumber(entry.goalsFor)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("goalsAgainst")}
+                      </span>
+                      <span className="text-gray-800 dark:text-gray-200">
+                        {formatNumber(entry.goalsAgainst)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("points")}
+                      </span>
+                      <span className="font-bold text-gray-900 dark:text-white">
+                        {formatNumber(entry.points)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </details>
           ))}
         </div>
 
-        <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-          <p>
-            {t("played")}: {t("playedFull")}, {t("goalDifference")}:{" "}
-            {t("goalDifferenceFull")}, {t("points")}: {t("pointsFull")}
-          </p>
+        <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+          <p className="text-center">{t("tapToExpand")}</p>
         </div>
       </div>
 
