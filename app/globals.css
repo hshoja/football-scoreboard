@@ -258,7 +258,7 @@ body {
   }
 }
 
-/* Animation for slide-up modal */
+/* Animation for mobile navigation */
 @keyframes slideUp {
   from {
     transform: translateY(100%);
