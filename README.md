@@ -2,6 +2,11 @@
 
 A responsive web application for managing football tournaments, matches, teams, and standings. Built with Next.js, TypeScript, and Tailwind CSS.
 
+
+<img width="1519" height="804" alt="Screenshot 2025-10-05 at 21 41 46" src="https://github.com/user-attachments/assets/9f9b6393-ae17-4ee2-a7cf-472b40a60647" />
+
+
+
 ## Features
 
 - **Responsive Design**: Works on mobile, tablet, and desktop devices
